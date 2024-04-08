@@ -1,9 +1,3 @@
--- Creamos la base de datos "terpel"
-CREATE DATABASE IF NOT EXISTS terpel;
-
--- Usamos la base de datos "terpel"
-USE terpel;
-
 -- Creamos la tabla Cliente
 CREATE TABLE IF NOT EXISTS Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -76,6 +70,8 @@ VALUES
 ('Orden 4', 65.00, '2024-01-04 11:00:00', 9.8),
 ('Orden 5', 70.00, '2024-01-05 12:00:00', 14.5);
 
+
+
 -- Insertamos datos de PRUEBA en la tabla Factura
 INSERT INTO Factura (id_cliente, id_vendedor, id_ordengasolina, fecha_compra)
 VALUES
@@ -126,10 +122,6 @@ BEGIN
     END IF;
 END;
 
--- Ejemplo para llamar al procedimiento una vez creado:
-CALL obtenerDatosClienteVendedorOrden(1);
-
-
 -- Procedimiento de almacenado que me trae los registros de la tabla 'factura' basados en el id proporcionado desde la tabla 'ordengasolina'. Trae 3 atributos de cada una de las tablas.
 
 CREATE PROCEDURE obtenerFacturasAOrden(IN orden_id INT)
@@ -156,8 +148,3 @@ BEGIN
         END IF;
     END IF;
 END;
-
-
--- invocar el procedimiento anterior
-CALL obtenerFacturasAOrden(4);
-
