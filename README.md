@@ -42,9 +42,12 @@ En los archivos que se clonaron, hay uno llamado **tablas.sql**:
 
 ![image](https://github.com/mespitiavilladiego90s/DesarrolloWebII_Taller-1_IntroBasesDeDatos/assets/97072616/d2da5e5f-4b89-43a8-ba1c-aad8cd344347)
 
-Se puede ejecutar directamente pero lo debido es crear una base de datos que se llame 'terpel' y luego ir ejecutando en la consola cada una de las piezas de código que se encuentren en tablas.sql, ya que es allí donde se crean las tablas, los datos de prueba y también los procedimientos de almacenado que se van a utilizar.
+Creamos una base de datos que se llame 'terpel' y luego vamos ejecutando cada porción de código:
 
-Reemplazamos nuestras credenciales de la base de datos en el archivo db.php:
+![image](https://github.com/mespitiavilladiego90s/DesarrolloWebII_Taller-1_IntroBasesDeDatos/assets/97072616/742cb3c1-f885-4c85-b823-91a007f334eb)
+
+Lo mejor es ir ejecutando el código por porciones, ya que así se evita problemas.
+Luego, reemplazamos nuestras credenciales de la base de datos en el archivo db.php:
 
 ![image](https://github.com/mespitiavilladiego90s/DesarrolloWebII_Taller-1_IntroBasesDeDatos/assets/97072616/cc9ef8fc-634b-4c7f-814a-437fa1d0d4f9)
 
