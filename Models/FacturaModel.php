@@ -77,7 +77,7 @@ class FacturaModel extends ActiveRecord {
         $camposValidos = [
             'id_cliente' => ['tipo' => 'numeric', 'valor_minimo' => 0],
             'id_vendedor' => ['tipo' => 'numeric', 'valor_minimo' => 0],
-            'id_ordenfactura' => ['tipo' => 'numeric', 'valor_minimo' => 0],
+            'id_ordengasolina' => ['tipo' => 'numeric', 'valor_minimo' => 0],
             'fecha_compra' => ['tipo' => 'fecha']
         ];
         
