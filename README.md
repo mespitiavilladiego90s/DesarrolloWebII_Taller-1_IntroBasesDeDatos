@@ -44,6 +44,11 @@ En los archivos que se clonaron, hay uno llamado **tablas.sql**:
 
 Se puede ejecutar directamente pero lo debido es crear una base de datos que se llame 'terpel' y luego ir ejecutando en la consola cada una de las piezas de código que se encuentren en tablas.sql, ya que es allí donde se crean las tablas, los datos de prueba y también los procedimientos de almacenado que se van a utilizar.
 
+Reemplazamos nuestras credenciales de la base de datos en el archivo db.php:
+
+![image](https://github.com/mespitiavilladiego90s/DesarrolloWebII_Taller-1_IntroBasesDeDatos/assets/97072616/cc9ef8fc-634b-4c7f-814a-437fa1d0d4f9)
+
+
 Una vez clonado el repositorio y teniendo mi base de datos 'terpel' con mis tablas y procedimientos creados, abrir una nueva terminal de visual studio code e ingresar el comando **php -S localhost:3000* : 
 
 ![image](https://github.com/mespitiavilladiego90s/DesarrolloWebII_Taller-1_IntroBasesDeDatos/assets/97072616/b68d2302-bd2e-4309-844d-7f94f40fa7c0)
