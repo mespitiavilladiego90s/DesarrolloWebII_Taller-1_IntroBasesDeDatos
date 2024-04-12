@@ -2,7 +2,7 @@
 require_once './includes/router.php'; // Incluimos el archivo router.php que me permite crear las rutas hacia la API
 require_once './includes/db.php'; // Incluimos el archivo db.php donde se encuentra la lógica de conexión
 require_once './includes/ActiveRecord.php'; // Incluimos ActiveRecord.php que contiene nuestro patrón de diseño ActiveRecord, el cual permite crear un objeto con la tabla SQL que queremos, en memoria. dicho objeto se sincroniza con los cambios que realizamos, permitiendo así manejar la información.
-
+// Establecer la codificación del archivo como UTF-8
 // Establecemos la conexión a la base de datos utilizando nuestro método estático que viene dentro de ActiveRecord
 ActiveRecord::setDB(Database::getConnection());
 

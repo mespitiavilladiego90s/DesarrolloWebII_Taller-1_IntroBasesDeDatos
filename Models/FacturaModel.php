@@ -27,18 +27,18 @@ class FacturaModel extends ActiveRecord {
     
         // Validamos los tipos de datos de los campos y sus restricciones
         if (!is_numeric($datos['id_cliente']) || $datos['id_cliente'] <= 0) {
-            $alertas['error'][] = 'El id del cliente debe ser un valor numérico mayor que cero.';
+            $alertas['error'][] = 'El id del cliente debe ser un valor numerico mayor que cero.';
         }
     
         if (!is_numeric($datos['id_vendedor']) || $datos['id_vendedor'] <= 0) {
-            $alertas['error'][] = 'El id del vendedor debe ser un valor numérico mayor que cero.';
+            $alertas['error'][] = 'El id del vendedor debe ser un valor numerico mayor que cero.';
         }
 
         if (!is_numeric($datos['id_ordengasolina']) || $datos['id_ordengasolina'] <= 0) {
-            $alertas['error'][] = 'El id de la orden de gasolina debe ser un valor numérico mayor que cero.';
+            $alertas['error'][] = 'El id de la orden de gasolina debe ser un valor numerico mayor que cero.';
         }
     
-        if (!DateTime::createFromFormat('Y-m-d H:i:s', $datos['fecha_compra'])) {
+        if (!DateTime::createFromFormat('Y-m-d H:i:s', $datos['fecha_compra']) || !strtotime($datos['fecha_compra'])) {
             $alertas['error'][] = 'La hora de la factura debe tener el formato YYYY-MM-DD HH:MM:SS.';
         }
     
@@ -91,7 +91,7 @@ class FacturaModel extends ActiveRecord {
                         }
                         break;
                     case 'fecha':
-                        if (!DateTime::createFromFormat('Y-m-d H:i:s', $valor)) {
+                        if (!DateTime::createFromFormat('Y-m-d H:i:s', $valor) || !strtotime($valor)) {
                             $alertas['error'][] = "El campo '$campo' debe tener el formato YYYY-MM-DD HH:MM:SS.";
                         }
                         break;

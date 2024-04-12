@@ -31,26 +31,26 @@ class ClienteModel extends ActiveRecord {
 
         // Validamos los tipos de datos de los campos y sus longitudes máximas
         if (!is_string($datos['nombre']) || strlen($datos['nombre']) > 100) {
-            $alertas['error'][] = 'El nombre debe ser una cadena con máximo 100 caracteres.';
+            $alertas['error'][] = 'El nombre debe ser una cadena con maximo 100 caracteres.';
         }
     
         if (!filter_var($datos['email'], FILTER_VALIDATE_EMAIL) || strlen($datos['email']) > 100) {
-            $alertas['error'][] = 'El email debe ser una dirección de correo electrónico válida con máximo 100 caracteres.';
+            $alertas['error'][] = 'El email debe ser una direccion de correo electronico valida con maximo 100 caracteres.';
         }
     
-        if (!is_string($datos['telefono']) || strlen($datos['telefono']) > 20) {
-            $alertas['error'][] = 'El teléfono debe ser una cadena con máximo 20 caracteres.';
+        if (!is_numeric($datos['telefono']) || strlen($datos['telefono']) > 20 || !preg_match('/^\d+$/', $datos['telefono'])) {
+            $alertas['error'][] = 'El telefono debe ser una cadena  de numeros con maximo 20 caracteres.';
         }
     
         if (!is_string($datos['direccion']) || strlen($datos['direccion']) > 200) {
-            $alertas['error'][] = 'La dirección debe ser una cadena con máximo 200 caracteres.';
+            $alertas['error'][] = 'La direccion debe ser una cadena de maximo 200 caracteres.';
         }
     
         if (!is_string($datos['ciudad']) || strlen($datos['ciudad']) > 100) {
-            $alertas['error'][] = 'La ciudad debe ser una cadena con máximo 100 caracteres.';
+            $alertas['error'][] = 'La ciudad debe ser una cadena con maximo 100 caracteres.';
         }
     
-        if (!DateTime::createFromFormat('Y-m-d', $datos['fecha_registro'])) {
+        if (!DateTime::createFromFormat('Y-m-d', $datos['fecha_registro']) || !strtotime($datos['fecha_registro'])) {
             $alertas['error'][] = 'La fecha de registro debe tener el formato YYYY-MM-DD.';
         }
 
@@ -64,7 +64,7 @@ class ClienteModel extends ActiveRecord {
         $camposValidos = [
             'nombre' => ['tipo' => 'string', 'longitud_maxima' => 100],
             'email' => ['tipo' => 'email', 'longitud_maxima' => 100],
-            'telefono' => ['tipo' => 'string', 'longitud_maxima' => 20],
+            'telefono' => ['tipo' => 'numerico', 'valor_minimo' => 0],
             'direccion' => ['tipo' => 'string', 'longitud_maxima' => 200],
             'ciudad' => ['tipo' => 'string', 'longitud_maxima' => 100],
             'fecha_registro' => ['tipo' => 'fecha']
@@ -76,21 +76,21 @@ class ClienteModel extends ActiveRecord {
                 switch ($camposValidos[$campo]['tipo']) {
                     case 'string':
                         if (!is_string($valor) || strlen($valor) > $camposValidos[$campo]['longitud_maxima']) {
-                            $alertas['error'][] = "El campo '$campo' debe ser una cadena con máximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
+                            $alertas['error'][] = "El campo '$campo' debe ser una cadena con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
                         }
                         break;
                     case 'email':
                         if (!filter_var($valor, FILTER_VALIDATE_EMAIL) || strlen($valor) > $camposValidos[$campo]['longitud_maxima']) {
-                            $alertas['error'][] = "El campo '$campo' debe ser una dirección de correo electrónico válida con máximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
+                            $alertas['error'][] = "El campo '$campo' debe ser una direccion de correo electronico valida con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
                         }
                         break;
                     case 'numerico':
-                        if (!is_numeric($valor) || $valor <= $camposValidos[$campo]['valor_minimo']) {
-                            $alertas['error'][] = "El campo '$campo' debe ser un valor numérico mayor que {$camposValidos[$campo]['valor_minimo']}.";
+                        if (!is_numeric($valor) || $valor <= $camposValidos[$campo]['valor_minimo'] || !preg_match('/^\d+$/', $valor)) {
+                            $alertas['error'][] = "El campo '$campo' debe ser un valor numerico mayor que {$camposValidos[$campo]['valor_minimo']}.";
                         }
                         break;
                     case 'fecha':
-                        if (!DateTime::createFromFormat('Y-m-d', $valor)) {
+                        if (!DateTime::createFromFormat('Y-m-d', $valor) || !strtotime($valor)) {
                             $alertas['error'][] = "El campo '$campo' debe tener el formato YYYY-MM-DD.";
                         }
                         break;
@@ -99,7 +99,7 @@ class ClienteModel extends ActiveRecord {
                         break;
                 }
             } else {
-                $alertas['error'][] = "El campo '$campo' no es válido.";
+                $alertas['error'][] = "El campo '$campo' no es valido.";
             }
         }
         

@@ -27,19 +27,19 @@ class OrdenModel extends ActiveRecord {
     
         // Validamos los tipos de datos de los campos y sus restricciones
         if (!is_string($datos['nombre']) || strlen($datos['nombre']) > 100) {
-            $alertas['error'][] = 'El nombre debe ser una cadena con máximo 100 caracteres.';
+            $alertas['error'][] = 'El nombre debe ser una cadena con maximo 100 caracteres.';
         }
     
-        if (!is_float($datos['precio']) || $datos['precio'] <= 0) {
-            $alertas['error'][] = 'El precio debe ser un valor numérico mayor que cero.';
+        if (!is_float($datos['precio']) || !is_numeric($datos['precio']) || $datos['precio'] <= 0) {
+            $alertas['error'][] = 'El precio debe ser un valor numerico mayor que cero.';
         }
     
-        if (!DateTime::createFromFormat('Y-m-d H:i:s', $datos['hora_orden'])) {
+        if (!DateTime::createFromFormat('Y-m-d H:i:s', $datos['hora_orden']) || !strtotime($datos['hora_orden'])) {
             $alertas['error'][] = 'La hora de orden debe tener el formato YYYY-MM-DD HH:MM:SS.';
         }
     
-        if (!is_float($datos['tiempo_llenado']) || $datos['tiempo_llenado'] <= 0) {
-            $alertas['error'][] = 'El tiempo de llenado debe ser un valor numérico mayor que cero.';
+        if (!is_float($datos['tiempo_llenado']) || !is_numeric($datos['tiempo_llenado']) || $datos['tiempo_llenado'] <= 0) {
+            $alertas['error'][] = 'El tiempo de llenado debe ser un valor numerico mayor que cero.';
         }
     
         return $alertas;
@@ -63,16 +63,16 @@ class OrdenModel extends ActiveRecord {
                 switch ($camposValidos[$campo]['tipo']) {
                     case 'string':
                         if (!is_string($valor) || strlen($valor) > $camposValidos[$campo]['longitud_maxima']) {
-                            $alertas['error'][] = "El campo '$campo' debe ser una cadena con máximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
+                            $alertas['error'][] = "El campo '$campo' debe ser una cadena con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
                         }
                         break;
                     case 'float':
-                        if (!is_float($valor) || $valor <= $camposValidos[$campo]['valor_minimo']) {
-                            $alertas['error'][] = "El campo '$campo' debe ser un valor numérico mayor que {$camposValidos[$campo]['valor_minimo']}.";
+                        if (!is_numeric($valor) || $valor <= $camposValidos[$campo]['valor_minimo']) {
+                            $alertas['error'][] = "El campo '$campo' debe ser un valor numerico mayor que {$camposValidos[$campo]['valor_minimo']}.";
                         }
                         break;
                     case 'fecha':
-                        if (!DateTime::createFromFormat('Y-m-d H:i:s', $valor)) {
+                        if (!DateTime::createFromFormat('Y-m-d H:i:s', $valor) || !strtotime($valor)) {
                             $alertas['error'][] = "El campo '$campo' debe tener el formato YYYY-MM-DD HH:MM:SS.";
                         }
                         break;
@@ -81,7 +81,7 @@ class OrdenModel extends ActiveRecord {
                         break;
                 }
             } else {
-                $alertas['error'][] = "El campo '$campo' no es válido para la tabla OrdenGasolina.";
+                $alertas['error'][] = "El campo '$campo' no es valido para la tabla OrdenGasolina.";
             }
         }
         
