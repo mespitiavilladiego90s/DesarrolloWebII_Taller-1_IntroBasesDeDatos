@@ -38,8 +38,8 @@ class ClienteModel extends ActiveRecord {
             $alertas['error'][] = 'El email debe ser una direccion de correo electronico valida con maximo 100 caracteres.';
         }
     
-        if (!is_numeric($datos['telefono']) || strlen($datos['telefono']) > 20 || !preg_match('/^\d+$/', $datos['telefono'])) {
-            $alertas['error'][] = 'El telefono debe ser una cadena  de numeros con maximo 20 caracteres.';
+        if (!is_string($datos['telefono']) || strlen($datos['telefono']) > 20 || !ctype_digit($datos['telefono'])) {
+            $alertas['error'][] = 'El telefono debe ser una cadena con maximo 20 caracteres.';
         }
     
         if (!is_string($datos['direccion']) || strlen($datos['direccion']) > 200) {
@@ -64,7 +64,7 @@ class ClienteModel extends ActiveRecord {
         $camposValidos = [
             'nombre' => ['tipo' => 'string', 'longitud_maxima' => 100],
             'email' => ['tipo' => 'email', 'longitud_maxima' => 100],
-            'telefono' => ['tipo' => 'numerico', 'valor_minimo' => 0],
+            'telefono' => ['tipo' => 'string_value', 'longitud_maxima' => 20],
             'direccion' => ['tipo' => 'string', 'longitud_maxima' => 200],
             'ciudad' => ['tipo' => 'string', 'longitud_maxima' => 100],
             'fecha_registro' => ['tipo' => 'fecha']
@@ -79,14 +79,14 @@ class ClienteModel extends ActiveRecord {
                             $alertas['error'][] = "El campo '$campo' debe ser una cadena con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
                         }
                         break;
+                        case 'string_value':
+                            if (!is_string($valor) || strlen($valor) > $camposValidos[$campo]['longitud_maxima'] || !ctype_digit($valor)) {
+                                $alertas['error'][] = "El campo '$campo' debe ser una cadena numérica con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
+                            }
+                            break;
                     case 'email':
                         if (!filter_var($valor, FILTER_VALIDATE_EMAIL) || strlen($valor) > $camposValidos[$campo]['longitud_maxima']) {
                             $alertas['error'][] = "El campo '$campo' debe ser una direccion de correo electronico valida con maximo {$camposValidos[$campo]['longitud_maxima']} caracteres.";
-                        }
-                        break;
-                    case 'numerico':
-                        if (!is_numeric($valor) || $valor <= $camposValidos[$campo]['valor_minimo'] || !preg_match('/^\d+$/', $valor)) {
-                            $alertas['error'][] = "El campo '$campo' debe ser un valor numerico mayor que {$camposValidos[$campo]['valor_minimo']}.";
                         }
                         break;
                     case 'fecha':

@@ -30,7 +30,7 @@ class OrdenModel extends ActiveRecord {
             $alertas['error'][] = 'El nombre debe ser una cadena con maximo 100 caracteres.';
         }
     
-        if (!is_float($datos['precio']) || !is_numeric($datos['precio']) || $datos['precio'] <= 0) {
+        if (!is_float($datos['precio']) || $datos['precio'] <= 0) {
             $alertas['error'][] = 'El precio debe ser un valor numerico mayor que cero.';
         }
     
@@ -38,7 +38,7 @@ class OrdenModel extends ActiveRecord {
             $alertas['error'][] = 'La hora de orden debe tener el formato YYYY-MM-DD HH:MM:SS.';
         }
     
-        if (!is_float($datos['tiempo_llenado']) || !is_numeric($datos['tiempo_llenado']) || $datos['tiempo_llenado'] <= 0) {
+        if (!is_float($datos['tiempo_llenado']) || $datos['tiempo_llenado'] <= 0) {
             $alertas['error'][] = 'El tiempo de llenado debe ser un valor numerico mayor que cero.';
         }
     
@@ -67,7 +67,7 @@ class OrdenModel extends ActiveRecord {
                         }
                         break;
                     case 'float':
-                        if (!is_numeric($valor) || $valor <= $camposValidos[$campo]['valor_minimo']) {
+                        if (!is_float($valor) || $valor <= $camposValidos[$campo]['valor_minimo']) {
                             $alertas['error'][] = "El campo '$campo' debe ser un valor numerico mayor que {$camposValidos[$campo]['valor_minimo']}.";
                         }
                         break;

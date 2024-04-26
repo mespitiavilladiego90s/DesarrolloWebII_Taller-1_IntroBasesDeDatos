@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
     nombre VARCHAR(100),
     email VARCHAR(100),
     direccion VARCHAR(200),
-    telefono INT(20),
+    telefono VARCHAR(20),
     ciudad VARCHAR(100),
     fecha_registro DATE
 );
@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS Vendedor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
     email VARCHAR(100),
-    telefono INT(20),
+    telefono VARCHAR(20),
     direccion VARCHAR(200),
     departamento VARCHAR(100),
-    salario DECIMAL(10, 2),
+    salario FLOAT,
     fecha_contratacion DATE
 );
 
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS Vendedor (
 CREATE TABLE IF NOT EXISTS OrdenGasolina (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
-    precio DECIMAL(10, 2),
+    precio FLOAT,
     hora_orden DATETIME,
-    tiempo_llenado DECIMAL(10, 2)
+    tiempo_llenado FLOAT
 );
 
 -- Creamos la tabla Factura
@@ -46,20 +46,20 @@ CREATE TABLE IF NOT EXISTS Factura (
 -- Insertamos datos de PRUEBA en la tabla Cliente
 INSERT INTO Cliente (nombre, email, direccion, telefono, ciudad, fecha_registro)
 VALUES
-('Cliente 1', 'cliente1@example.com', 'Calle A 123', 123456789, 'Ciudad A', '2024-01-01'),
-('Cliente 2', 'cliente2@example.com', 'Calle B 456', 987654321, 'Ciudad B', '2024-02-01'),
-('Cliente 3', 'cliente3@example.com', 'Calle C 789', 456123789, 'Ciudad C', '2024-03-01'),
-('Cliente 4', 'cliente4@example.com', 'Calle D 012', 321654987, 'Ciudad D', '2024-04-01'),
-('Cliente 5', 'cliente5@example.com', 'Calle E 345', 789456123, 'Ciudad E', '2024-05-01');
+('Cliente 1', 'cliente1@example.com', 'Calle A 123', '123456789', 'Ciudad A', '2024-01-01'),
+('Cliente 2', 'cliente2@example.com', 'Calle B 456', '987654321', 'Ciudad B', '2024-02-01'),
+('Cliente 3', 'cliente3@example.com', 'Calle C 789', '456123789', 'Ciudad C', '2024-03-01'),
+('Cliente 4', 'cliente4@example.com', 'Calle D 012', '321654987', 'Ciudad D', '2024-04-01'),
+('Cliente 5', 'cliente5@example.com', 'Calle E 345', '789456123', 'Ciudad E', '2024-05-01');
 
 -- Insertamos datos de PRUEBA en la tabla Vendedor
 INSERT INTO Vendedor (nombre, email, telefono, direccion, departamento, salario, fecha_contratacion)
 VALUES
-('Vendedor 1', 'vendedor1@example.com', 111111111, 'Calle F 123', 'Ventas', 2000.00, '2023-01-01'),
-('Vendedor 2', 'vendedor2@example.com', 222222222, 'Calle G 456', 'Ventas', 2200.00, '2023-02-01'),
-('Vendedor 3', 'vendedor3@example.com', 333333333, 'Calle H 789', 'Ventas', 2300.00, '2023-03-01'),
-('Vendedor 4', 'vendedor4@example.com', 444444444, 'Calle I 012', 'Ventas', 2400.00, '2023-04-01'),
-('Vendedor 5', 'vendedor5@example.com', 555555555, 'Calle J 345', 'Ventas', 2500.00, '2023-05-01');
+('Vendedor 1', 'vendedor1@example.com', '111111111', 'Calle F 123', 'Ventas', 2000.00, '2023-01-01'),
+('Vendedor 2', 'vendedor2@example.com', '222222222', 'Calle G 456', 'Ventas', 2200.00, '2023-02-01'),
+('Vendedor 3', 'vendedor3@example.com', '333333333', 'Calle H 789', 'Ventas', 2300.00, '2023-03-01'),
+('Vendedor 4', 'vendedor4@example.com', '444444444', 'Calle I 012', 'Ventas', 2400.00, '2023-04-01'),
+('Vendedor 5', 'vendedor5@example.com', '555555555', 'Calle J 345', 'Ventas', 2500.00, '2023-05-01');
 
 -- Insertamos datos de PRUEBA en la tabla OrdenGasolina
 INSERT INTO OrdenGasolina (nombre, precio, hora_orden, tiempo_llenado)
@@ -69,8 +69,6 @@ VALUES
 ('Orden 3', 60.00, '2024-01-03 10:00:00', 11.2),
 ('Orden 4', 65.00, '2024-01-04 11:00:00', 9.8),
 ('Orden 5', 70.00, '2024-01-05 12:00:00', 14.5);
-
-
 
 -- Insertamos datos de PRUEBA en la tabla Factura
 INSERT INTO Factura (id_cliente, id_vendedor, id_ordengasolina, fecha_compra)
