@@ -5,7 +5,7 @@ require_once 'includes/ActiveRecord.php';
 class VendedorModel extends ActiveRecord
 {
 
-    protected static $tabla = 'vendedor';
+    protected static $tabla = 'Vendedor';
     protected static $columnasDB = ['id', 'nombre', 'email', 'telefono', 'direccion', 'departamento', 'salario', 'fecha_contratacion'];
 
     public $id;

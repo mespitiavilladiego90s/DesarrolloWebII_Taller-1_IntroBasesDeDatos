@@ -16,10 +16,10 @@ $router = new Router();
 */
 
 
-$router->get('/obtener-vendedor/(\d+)', 'APIController@obtenerVendedorPorId'); 
-$router->post('/crear-vendedor', 'APIController@crearVendedor'); 
-$router->put('/actualizar-vendedor/(\d+)', 'APIController@actualizarVendedorPorId'); 
-$router->delete('/eliminar-vendedor/(\d+)', 'APIController@eliminarVendedorPorId'); 
+$router->get('/obtener-vendedor/(\d+)', 'VendedorController@obtenerVendedorPorId'); 
+$router->post('/crear-vendedor', 'VendedorController@crearVendedor'); 
+$router->put('/actualizar-vendedor/(\d+)', 'VendedorController@actualizarVendedorPorId'); 
+$router->delete('/eliminar-vendedor/(\d+)', 'VendedorController@eliminarVendedorPorId'); 
 
 
 /*
@@ -31,10 +31,10 @@ $router->delete('/eliminar-vendedor/(\d+)', 'APIController@eliminarVendedorPorId
 */
 
 
-$router->get('/obtener-cliente/(\d+)', 'APIController@obtenerClientePorId'); 
-$router->post('/crear-cliente', 'APIController@crearCliente'); 
-$router->put('/actualizar-cliente/(\d+)', 'APIController@actualizarClientePorId'); 
-$router->delete('/eliminar-cliente/(\d+)', 'APIController@eliminarClientePorId'); 
+$router->get('/obtener-cliente/(\d+)', 'ClienteController@obtenerClientePorId'); 
+$router->post('/crear-cliente', 'ClienteController@crearCliente'); 
+$router->put('/actualizar-cliente/(\d+)', 'ClienteController@actualizarClientePorId'); 
+$router->delete('/eliminar-cliente/(\d+)', 'ClienteController@eliminarClientePorId'); 
 
 
 /*
@@ -46,10 +46,10 @@ $router->delete('/eliminar-cliente/(\d+)', 'APIController@eliminarClientePorId')
 */
 
 
-$router->get('/obtener-orden/(\d+)', 'APIController@obtenerOrdenPorId'); 
-$router->post('/crear-orden', 'APIController@crearOrden'); 
-$router->put('/actualizar-orden/(\d+)', 'APIController@actualizarOrdenPorId'); 
-$router->delete('/eliminar-orden/(\d+)', 'APIController@eliminarOrdenPorId'); 
+$router->get('/obtener-orden/(\d+)', 'OrdenController@obtenerOrdenPorId'); 
+$router->post('/crear-orden', 'OrdenController@crearOrden'); 
+$router->put('/actualizar-orden/(\d+)', 'OrdenController@actualizarOrdenPorId'); 
+$router->delete('/eliminar-orden/(\d+)', 'OrdenController@eliminarOrdenPorId'); 
 
 
 /*
@@ -62,10 +62,10 @@ $router->delete('/eliminar-orden/(\d+)', 'APIController@eliminarOrdenPorId');
 */
 
 
-$router->get('/obtener-factura/(\d+)', 'APIController@obtenerFacturaPorId'); 
-$router->post('/crear-factura', 'APIController@crearFactura'); 
-$router->put('/actualizar-factura/(\d+)', 'APIController@actualizarFacturaPorId'); 
-$router->delete('/eliminar-factura/(\d+)', 'APIController@eliminarFacturaPorId'); 
+$router->get('/obtener-factura/(\d+)', 'FacturaController@obtenerFacturaPorId'); 
+$router->post('/crear-factura', 'FacturaController@crearFactura'); 
+$router->put('/actualizar-factura/(\d+)', 'FacturaController@actualizarFacturaPorId'); 
+$router->delete('/eliminar-factura/(\d+)', 'FacturaController@eliminarFacturaPorId'); 
 
 
 /*

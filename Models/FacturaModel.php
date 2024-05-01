@@ -4,7 +4,7 @@ require_once 'includes/ActiveRecord.php';
 
 class FacturaModel extends ActiveRecord {
 
-    protected static $tabla = 'factura';
+    protected static $tabla = 'Factura';
     protected static $columnasDB = ['id', 'id_cliente', 'id_vendedor', 'id_ordengasolina', 'fecha_compra'];
 
     public $id;

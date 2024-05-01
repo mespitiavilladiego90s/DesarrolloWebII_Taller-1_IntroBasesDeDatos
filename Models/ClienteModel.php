@@ -4,7 +4,7 @@ require_once 'includes/ActiveRecord.php';
 
 class ClienteModel extends ActiveRecord {
 
-    protected static $tabla = 'cliente';
+    protected static $tabla = 'Cliente';
     protected static $columnasDB = ['id', 'nombre', 'email', 'direccion', 'telefono', 'ciudad', 'fecha_registro'];
 
     public $id;

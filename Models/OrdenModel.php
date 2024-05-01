@@ -4,7 +4,7 @@ require_once 'includes/ActiveRecord.php';
 
 class OrdenModel extends ActiveRecord {
 
-    protected static $tabla = 'ordengasolina';
+    protected static $tabla = 'Ordengasolina';
     protected static $columnasDB = ['id', 'nombre', 'precio', 'hora_orden', 'tiempo_llenado'];
 
     public $id;
